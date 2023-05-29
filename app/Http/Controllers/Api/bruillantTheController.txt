@@ -1,0 +1,20 @@
+pour la fonction index  
+// $answers = Word::select("meaning")
+//                 ->inRandomOrder()
+//                 ->limit(2)
+//                 ->get();
+// $answersTable =$answers->toArray();
+ /*
+     while the correct value not exist in the answers table reopete the random selector.
+ */
+// while(!in_array($CorrectAnswer, $answersTable)){
+//     ->inRandomOrder()
+//     $answers = Word::select("meaning")
+//     ->limit(2)
+//     ->get();
+// }
+// echo $answers;
+// $myObj = json_decode($words1);
+// //$myObj->Answer_1 = $answer[2]->meaning; ;
+// $words_1 = json_encode($myObj);
+// //$words->Answer_1 = $answer[2]->meaning;
