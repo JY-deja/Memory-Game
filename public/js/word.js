@@ -32,58 +32,6 @@ function loadJson()
                      </span>
                  </div>    
                </div>
-               <div class="card swiper-slide">
-                 <div class="card_image mb-6">
-                     <img src="images/Back_1.png" alt="img">
-                 </div>
-                 <div class="card_content m-5">
-                     <span class="card_title m-3 text-4xl">
-                         ${word.Word}
-                     </span>
-                     <span class="card_name text-xl">
-                         ${word.Correct_Answer}
-                     </span>
-                 </div>    
-               </div>
-               <div class="card swiper-slide">
-                 <div class="card_image mb-6">
-                     <img src="images/Back_1.png" alt="img">
-                 </div>
-                 <div class="card_content m-5">
-                     <span class="card_title m-3 text-4xl">
-                         ${word.Word}
-                     </span>
-                     <span class="card_name text-xl">
-                         ${word.Correct_Answer}
-                     </span>
-                 </div>    
-               </div>
-               <div class="card swiper-slide">
-                 <div class="card_image mb-6">
-                     <img src="images/Back_1.png" alt="img">
-                 </div>
-                 <div class="card_content m-5">
-                     <span class="card_title m-3 text-4xl">
-                         ${word.Word}
-                     </span>
-                     <span class="card_name text-xl">
-                         ${word.Correct_Answer}
-                     </span>
-                 </div>    
-               </div>
-               <div class="card swiper-slide">
-                 <div class="card_image mb-6">
-                     <img src="images/Back_1.png" alt="img">
-                 </div>
-                 <div class="card_content m-5">
-                     <span class="card_title m-3 text-4xl">
-                         ${word.Word}
-                     </span>
-                     <span class="card_name text-xl">
-                         ${word.Correct_Answer}
-                     </span>
-                 </div>    
-               </div>
                 `;
             });
           
