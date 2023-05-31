@@ -83,7 +83,7 @@
             <x-responsive-nav-link :href="route('Words')" :active="request()->routeIs('Words')">
                 {{ __('Words') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('Words')" :active="request()->routeIs('Words')">
+            <x-responsive-nav-link :href="route('Words')" :active="request()->routeIs('game')">
                 {{ __('Game') }}
             </x-responsive-nav-link>
         </div>
