@@ -1,5 +1,10 @@
 dataTableBody = document.querySelector('.dataTableBody');
 idModalUpdate = document.getElementById('Update-modal');
+valueWord = document.querySelector('.valueWord');
+valueMeaning= document.querySelector('.valueMeaning');
+let element = document.getElementById("Update-modal");
+
+ console.log(element)
 
 async function getData(){
     const records = await fetch('http://127.0.0.1:8000/api/words')
@@ -110,19 +115,59 @@ function updateItems(index){
         }).then(res => res.json())
           .then(data => {
             if(data.Status === 200){
+                //put the value in the input js?
+
+                valueWord.value = data.Word.word;
+                valueMeaning.value = data.Word.meaning;
+
+                console.log(data.Word.meaning);
                 console.log(data.Word.word)
+
             }
-          })
-    //         fetch('http://127.0.0.1:8000/api/words/'+index+'/delete', {
-    //            method: 'DELETE'
-    //         }) 
-    //         Swal.fire(
-    //             'Deleted!',
-    //             'Your file has been deleted.',
-    //             'success'
-    //         )
-    //     }
-    // });
+        });
+        const formUpdate = document.getElementById('formUpdate');
+        formUpdate.addEventListener('submit',event =>{
+            event.preventDefault();
+            const updateFormData = new FormData(formUpdate);
+            // console.log(updateFormData)
+            const data = new URLSearchParams(updateFormData);
+            // console.log(data);
+
+            fetch('http://127.0.0.1:8000/api/words/'+index+'/update', {
+                method: 'PUT',
+                body:data
+            }).then(res => res.json())
+            .then(data => {
+                if(data.Status === 200)
+                {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: data.Message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    getData();
+                    var modal_backdrop = document.querySelector('div[modal-backdrop]');
+                    element.style.display = "none";
+                    modal_backdrop.remove();
+                }
+                else if(data.Status === 500 || data.Status === 404)
+                {
+                    swal.fire({
+                        position: 'top-end',
+                        icon: 'warning',
+                        title: data.Message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(eror =>
+                console.log(eror)
+            );
+        })
 }
 
 //fetch delete api javascript 
@@ -162,6 +207,17 @@ function removeItems(index){
     // .then(res => console.log(res.Message) );
 
 
+
+    //         fetch('http://127.0.0.1:8000/api/words/'+index+'/delete', {
+    //            method: 'DELETE'
+    //         }) 
+    //         Swal.fire(
+    //             'Deleted!',
+    //             'Your file has been deleted.',
+    //             'success'
+    //         )
+    //     }
+    // });
 
 
 
