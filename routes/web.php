@@ -15,19 +15,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/',function(){ return view('word.home');});
 
-Route::get('/dashboard', function () {
-    return view('word.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function(){
+    Route::get('/dashboard', function () { return view('word.dashboard');})->name('dashboard');
+    Route::get('/Words', function () { return view('word.tableWords');})->name('Words');
+    Route::get('/levels', function() { return view('word.levels');})->name('levels');
+    Route::get('/game?level={id}',function(){ return view('word.game');});
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
-    Route::get('/Words', function () { return view('word.tableWords');})->name('Words');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');    
     
 });
+    
 
 Route::get('/welcome', function () { 
     return view('bright.welcome2');

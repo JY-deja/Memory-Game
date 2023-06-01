@@ -1,0 +1,121 @@
+body{
+    background-image: linear-gradient(to
+   right, #daaaeb 0%, #BFE1F1 100%,#daaaeb 40%
+    );
+    
+      color: #fff;
+      font-size: 2em;
+      /*font-size: sets the size of a font. */
+      overflow: hidden;
+      /*The CSS overflow property controls what happens to content that is too big to fit into an area.  */
+      /* it so important */
+  }
+  
+  
+    .rain {
+      position: absolute;
+      top: -50px;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      animation: rain 1s linear infinite;
+    }
+  
+    .word {
+      position: absolute;
+      text-shadow: 0px 0px 3px #fff;
+      animation: word 2s linear infinite;
+    }
+  
+    @keyframes rain {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100%);
+      }
+    }
+  
+    @keyframes word {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+    }
+  
+  .div-btn{
+      height: 100vh;
+  }
+  .btn{
+      
+      color: #fff;
+      background: #BFE1F1;
+      border: #fff;
+      font-weight: bold;
+      /* background-image: linear-gradient(to
+      left, #BFE1F1 50%, #daaaeb 100%); */
+      padding: 2vh;
+  }
+  
+  .btn:hover{
+    background-image: linear-gradient(to
+       left, #fff 0%, #BFE1F1 100%);
+    color: #daaaeb;
+  }
+  
+  
+  /* 
+  EXplaining:
+    .rain {
+      position: absolute;
+      top: -50px;
+      width: 100%;e
+      height: 100%;
+      pointer-events: none;
+      animation: rain 1s linear infinite;
+    }
+  
+    .word {
+      position: absolute;
+      font-weight: bold;
+      text-shadow: 0px 0px 3px #fff;
+      animation: word 2s linear infinite;
+    }
+  
+    @keyframes rain {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100%);
+      }
+    }
+  
+    @keyframes word {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+    } 
+  */
+  

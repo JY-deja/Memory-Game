@@ -23,7 +23,7 @@
                     <x-nav-link :href="route('Words')" :active="request()->routeIs('Words')">
                         {{ __('Words') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('New Words')">
+                    <x-nav-link :href="route('levels')" :active="request()->routeIs('levels')">
                         {{ __('Game') }}
                     </x-nav-link>
                 </div>
