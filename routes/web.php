@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/welcome', function () { 
     return view('bright.welcome2');
 });
-    
+
+
+Route::get('/test',function(){ return view('word.test');});
 
 require __DIR__.'/auth.php';

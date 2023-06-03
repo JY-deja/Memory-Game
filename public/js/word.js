@@ -1,6 +1,5 @@
 // Get Data From API & Display in HTML With JavaScript
 let jsSwip = document.querySelector('.jsSwip');
-console.log(jsSwip)
 
 
 function loadJson()
