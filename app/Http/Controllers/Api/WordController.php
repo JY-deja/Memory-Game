@@ -40,10 +40,30 @@ class WordController extends Controller
                 }while(in_array($CorrectAnswer, $answersTable));
 
                 //The Answers
-                $words->Answer_1 = $answers[0]->meaning;
-                $words->Answer_2 = $answers[1]->meaning;
+
+                for($x = 0; $x < 3; $x++){
+                    $words->{'Answer_'.$x+1} = $answers[$x]->meaning;
+                }
+               
+                // $words->Answer_1 = $answers[0]->meaning;
+                // $words->Answer_2 = $answers[1]->meaning;
+                // $words->Answer_3 = $answers[2]->meaning;
                 // $words->id_user = Auth::id();
-                //$words->Answer_3 = $answers[2]->meaning;
+
+                $exist = false;
+                foreach($answers as $answers){
+                    if($answers->meaning === $CorrectAnswer){
+                        $exist =true;
+                    }
+                }
+              
+                if(!$exist){
+                    $k = rand(0,2);
+
+                    $words->{'Answer_'.$k+1} = $CorrectAnswer;
+                }    
+
+
                 
             }
         }
