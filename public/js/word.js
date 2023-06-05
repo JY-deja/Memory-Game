@@ -1,5 +1,6 @@
 // Get Data From API & Display in HTML With JavaScript
 let jsSwip = document.querySelector('.jsSwip');
+let elem = document.getElementById("Create-modal");
 
 
 function loadJson()
@@ -67,6 +68,50 @@ var swiper = new Swiper(".mySwiper",{
       el: ".swiper-pagination",
     },
 });
+
+function postData()
+{
+    const form = document.getElementById("form");
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const data = new URLSearchParams(formData);
+
+        fetch('http://127.0.0.1:8000/api/words/', {
+            method: 'POST',
+            body : data
+        }).then(res=> res.json())
+          .then(data => {
+            if(data.Status === 200){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: data.Message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                loadJson();
+                var modal_backdrop = document.querySelector('div[modal-backdrop]');
+                elem.style.display = "none";
+                modal_backdrop.remove();
+            }
+            else if(data.Status === 500 )//|| data.Status === 422
+            {
+                //console.log(data.Message[0])
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: data.Message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+          })
+          .catch(err => console.log(err));
+});
+}
+postData();
 
 
 

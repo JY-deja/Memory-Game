@@ -56,46 +56,8 @@ $(document).ready(function () {
 });
 
 //POST Form Data With JavaScript Fetch API?
+ 
 
-function postData()
-{
-    const form = document.getElementById("form");
-    form.addEventListener('submit', event => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-        const data = new URLSearchParams(formData);
-
-        fetch('http://127.0.0.1:8000/api/words/', {
-            method: 'POST',
-            body : data
-        }).then(res=> res.json())
-          .then(data => {
-            if(data.Status === 200){
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: data.Message,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            }
-            else if(data.Status === 500 )//|| data.Status === 422
-            {
-                //console.log(data.Message[0])
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'warning',
-                    title: data.Message,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-          })
-          .catch(err => console.log(err));
-});
-}
-postData();
 
 // Form update Data With JavaScript Fetch API?
 
