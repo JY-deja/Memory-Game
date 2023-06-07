@@ -2,12 +2,14 @@
 let countSpan = document.querySelector('.count span');
 let bulletsSpanContainer = document.querySelector(".bullets .spans");
 let quizArea = document.querySelector(".quiz-area");
+let quizInfo = document.querySelector(".quiz-info");
+let divBut = document.querySelector(".div-but");
 let answerArea = document.querySelector(".answers-area");
-let submitButton = document.querySelector(".submit-button");
-let bullets = document.querySelector(".bullets");
+let submitButton = document.querySelector(".submitButton")
 let resultsContainer = document.querySelector(".results");
 let recorectAnswer ;
 let repondStatus = document.querySelector(".repond");
+let bullets = document.querySelector(".bullets");
 let level;
 
 
@@ -22,15 +24,12 @@ window.addEventListener("DOMContentLoaded", function() {
   level = urlParams.get("level");
 
   // Call a function or perform other operations using the `level` variable
-  console.log("Received level:", level);
-
   getQuestions();
 
 });
 
 //create function that تستدعي Data or return data from json
 function getQuestions(){
-    console.log(level)
     //do XML Http Request
     let myRequest = new XMLHttpRequest();
 
@@ -47,8 +46,6 @@ function getQuestions(){
 
             //Index Of The Last Question:
             let questionCount = 10*level;
-
-            console.log( currentIndex +' , '+ questionCount);
 
             //create bullets + set question count
             createBullets(questionCount , totalQuestion);
@@ -68,65 +65,33 @@ function getQuestions(){
                     });
                 });
            }
-
+            
             //Click On Submit
             submitButton.onclick = () =>{
 
                 //Get The Right Answer ; 
                 let theRightAnswer = questionobject.words[currentIndex].Correct_Answer;
-                let btn = document.querySelectorAll('.btn');
-                let correctAnswer = questionobject.words[currentIndex].Correct_Answer;
-                let worngAnswer = document.querySelector(".active");
-
-                //Check The Answer
                 recorectAnswer = checkAnswer(theRightAnswer, questionCount);
-                if(recorectAnswer)
-                {
-                    repondStatus.classList.add('text-success');
-                    submitButton.classList.add('continue');
-                    repondStatus.innerHTML = "Correct Answer    <span>&#10003;</span>";
-                    submitButton.innerText = "Continue";
-
-                }
-                // else if(recorectAnswer === null)
-                // {
-                //     btn.forEach(element => {
-                //         let answer = element.getAttribute('data-answer');
-                //         if(answer === correctAnswer){
-                //             element.classList.add('active');
-                //         }
-                //     });
-                // }
-                else
-                {
-                    if(worngAnswer != null)
-                    {
-                        worngAnswer.classList.replace('btn-outline-success','btn-outline-danger');
-                    }
-                    
-                    repondStatus.classList.add('text-danger');
-                    submitButton.classList.add('continue');
-                    repondStatus.innerHTML = "Wrong Answer    <span>&#10006;</span>";
-                    submitButton.innerHTML = "Continue";
-
-                   
-                    btn.forEach(element => {
-                        let answer = element.getAttribute('data-answer');
-                        if(answer === correctAnswer){
-                            element.classList.add('active');
-                        }
-                    });
-                    
-                }
+                let nextQst = document.querySelector(".contin");
                 
-                let nextQst = document.querySelector(".continue");
+                submitButton.style.display = "none";
+                nextQst.style.display = "block";
+
+                verifieReponse(theRightAnswer,recorectAnswer);
+
+                let btn = document.querySelectorAll('.btn');
+
                 nextQst.onclick = () =>{
+
+                    nextQst.style.display = "none";
+                    submitButton.style.display = "block";
                     //Increase Index
                     currentIndex++;
                     //Remove Previous Question
                     quizArea.innerHTML = "";
                     answerArea.innerHTML="";
                     repondStatus.innerText =" ";
+                    submitButton.classList.remove('submitButton');
                     submitButton.classList.remove('continue');
                     submitButton.innerText = "Submit Answer";
                     if(repondStatus.classList.contains('text-success'))
@@ -137,11 +102,11 @@ function getQuestions(){
                     }
                     btn.forEach(element => {
                         let answer = element.getAttribute('data-answer');
-                        if(answer === correctAnswer){
+                        if(answer === theRightAnswer){
                             element.classList.remove('active');
                         }
                     });
-                    // worngAnswer.classList.replace('btn-outline-success','btn-outline-success');
+                    
                     //Add Questions Data
                     addQuestionsData(questionobject.words[currentIndex] , questionCount);
 
@@ -159,12 +124,15 @@ function getQuestions(){
                     }
 
                     //Handle Bullets Class
-                    handleBullets();
+                    handleBullets(recorectAnswer);
 
                     //Show The Result 
                     showResult(questionCount);
+                }       
                 }
-            }        
+
+                
+
         };
         
     };
@@ -204,7 +172,7 @@ function createBullets(num , totalQuest)
         //Check If Its First
         if(i === 0 )
         {
-            theBullets.className = "on";
+            theBullets.className = "first";
         }
 
         //append bullets to main bullet container
@@ -214,9 +182,6 @@ function createBullets(num , totalQuest)
 
 function addQuestionsData(obj , count)
 {
-    console.log('currentIndex '+ obj["Word"]);
-    console.log('count '+ count);
-
     if(currentIndex < count){
         //create H2 The Word Title :
     let questionTiltle = document.createElement("h2");
@@ -247,7 +212,7 @@ function addQuestionsData(obj , count)
         let radioInput = document.createElement("button");
 
         //Add Class To Button 
-        radioInput.className = 'btn btn-outline-success btn-lg m-4 px-lg-5 col';
+        radioInput.className = 'btn btn-outline-success m-4 px-lg-4 col';
 
         //Add Type + Name + Data-Attribute 
         radioInput.name = "question";
@@ -296,24 +261,22 @@ function checkAnswer(RAns, QCount){
     {
         if(answers[i].classList.contains("active"))
         {
-            theChoosenAnswer = answers[i].dataset.answer;
-            
+            theChoosenAnswer = answers[i].dataset.answer;  
         }
     }
 
     if(RAns === theChoosenAnswer){
+        
         rightAnswers++;
         return true;
     }
     else
     {
         return false;
-    }
-
-    
+    }  
 }
 
-function handleBullets(){
+function handleBullets(aNS){
     //Get All The Bullets :
     let bulletsSpan = document.querySelectorAll(".bullets .spans span");
 
@@ -321,8 +284,16 @@ function handleBullets(){
     let arrayOfSpan = Array.from(bulletsSpan);
 
     arrayOfSpan.forEach((span , index) => {
-        if(currentIndex === index){
-            span.className = "on";
+        if(currentIndex -1 === index){
+            if(aNS)
+            {
+                span.className = "on";
+            }
+            else
+            {
+               span.className = "ouf"; 
+            }
+            
         }
     });
 
@@ -333,6 +304,8 @@ function showResult(count)
     let theResultat;
     if(currentIndex === count)
     {
+        divBut.remove();
+        quizInfo.remove();
         quizArea.remove();
         answerArea.remove();
         submitButton.remove();
@@ -340,19 +313,95 @@ function showResult(count)
 
         if(rightAnswers > (count / 2) && rightAnswers < count)
         {
-            theResultat = `<span class="good">Good</span>, ${rightAnswers} From ${count} .`;
+            theResultat = `
+                        <div class="card mt-sm-4" style="width: 15rem;">
+                            <img src="images/emoji-eccellente.gif" class="card-img-top mt-sm-4" alt="...">
+                            <div class="card-body">
+                                <p class="card-text mt-4"><span class="good">Good</span>, ${rightAnswers} From ${count} .</p></p>
+                                <a href="#" class="btn btn-danger mt-2 float-right">Next</a>
+                                <a href="#" class="btn btn-success mt-2 float-left">Back</a>
+                            </div>
+                        </div>           
+            `;
         }
         else if(rightAnswers === count)
         {
-            theResultat = `<span class="perfect">Perfect</span>, All Answers Is Good .`;
+            theResultat = `
+                        <div class="card mt-sm-4" style="width: 15rem;">
+                            <img src="images/emoji-eccellente.gif" class="card-img-top mt-sm-4" alt="...">
+                            <div class="card-body">
+                                <p class="card-text mt-4"><span class="perfect">Perfect</span>, All Answers Is Good.</p>
+                                <a href="#" class="btn btn-danger mt-2 float-right">Next</a>
+                                <a href="#" class="btn btn-success mt-2 float-left">Back</a>
+                            </div>
+                        </div>           
+            `;
         }
         else 
         {
-            theResultat = `<span class="bad">Bad</span>, ${rightAnswers} From ${count} .`;
+            theResultat = `
+                        <div class="card mt-sm-4" style="width: 15rem;">
+                            <img src="images/sad-disappointed-emoji-fe0odmcpuli6pcbx.gif" class="card-img-top mt-sm-4" alt="...">
+                            <div class="card-body">
+                                <p class="card-text mt-4"><span class="bad">Bad</span>, ${rightAnswers} From ${count}.</p>
+                                <a href="#" class="btn btn-danger mt-2 float-right">Next</a>
+                                <a href="#" class="btn btn-success mt-2 float-left">Back</a>
+                            </div>
+                        </div>
+            `;
         }
 
         resultsContainer.innerHTML = theResultat;
         resultsContainer.className = "results mt-4 p-lg-5 bg-white fs-4 font-monospace text-center";
         
     }
+}
+
+function verifieReponse(rightAnswer , recorectAnswer){
+    let btn = document.querySelectorAll('.btn');
+
+    // let correctAnswer = questionobject.words[currentIndex].Correct_Answer;
+    let worngAnswer = document.querySelector(".active");
+
+    //Check The Answer
+                if(recorectAnswer)
+                {
+                    repondStatus.classList.add('text-success');
+                    submitButton.classList.add('continue');
+                    repondStatus.innerHTML = "Correct Answer    <span>&#10003;</span>";
+                    submitButton.innerText = "Continue";
+                    submitButton.classList.remove('submitButton');
+
+                }
+                // else if(recorectAnswer === null)
+                // {
+                //     btn.forEach(element => {
+                //         let answer = element.getAttribute('data-answer');
+                //         if(answer === correctAnswer){
+                //             element.classList.add('active');
+                //         }
+                //     });
+                // }
+                else
+                {
+                    if(worngAnswer != null)
+                    {
+                        worngAnswer.classList.replace('btn-outline-success','btn-outline-danger');
+                    }
+                    
+                    repondStatus.classList.add('text-danger');
+                    submitButton.classList.add('continue');
+                    repondStatus.innerHTML = "Wrong Answer    <span>&#10006;</span>";
+                    submitButton.innerHTML = "Continue";
+                    submitButton.classList.remove('submitButton');
+
+                   
+                    btn.forEach(element => {
+                        let answer = element.getAttribute('data-answer');
+                        if(answer === rightAnswer){
+                            element.classList.add('active');
+                        }
+                    });
+                    
+                }
 }

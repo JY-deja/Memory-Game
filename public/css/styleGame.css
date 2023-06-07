@@ -108,6 +108,7 @@ body{
     border-top: 1px solid #dfdfdf;
     background-color: #fff;
     display: flex;
+    flex-direction: column;
     padding: 20px;
 }
 
@@ -124,8 +125,18 @@ body{
     border-radius:50%;
 }
 
+.quiz-app .bullets .spans span.first{
+    background-color: #d37ef3;
+}
+
 .quiz-app .bullets .spans span.on{
-    background-color: #daaaeb;
+    background-color: green;
+    color: white;
+}
+
+.quiz-app .bullets .spans span.ouf{
+    background-color: red;
+    color: white;
 }
 
 .quiz-app .results span{
@@ -162,8 +173,9 @@ body{
 .submit-button:hover{
     color: white;
     background-color: #d37ef3;
-}
+} 
 
+/* 
 .btn{
     
     color: #fff;
@@ -171,10 +183,10 @@ body{
     border: #fff;
     font-weight: bold;
     padding: 2vh;
-}
+} */
 
-.btn:hover{
+/* .btn:hover{
     background-image: linear-gradient(to
        left, #fff 0%, #BFE1F1 100%);
     color: #daaaeb;
-}
+} */
