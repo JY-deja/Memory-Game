@@ -333,7 +333,7 @@ function showResult(count,lvl)
         //compared the right answer to the correct answer:
         if(rightAnswers > (countQust / 2) && rightAnswers < countQust)
         {
-            
+            // for the next button we don't added just for the situation when has more the question . if the has not we don't added.
             theResultat = `
                         <div class="card " >
                             <img src="images/congrats-15.gif" class="card-img-top " alt="...">
