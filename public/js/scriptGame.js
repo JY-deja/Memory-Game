@@ -322,21 +322,30 @@ function showResult(count,lvl)
         bullets.remove();
 
         let url = "http://127.0.0.1:8000/game?level="+ (lvl+1);
-        if(rightAnswers > (count / 2) && rightAnswers < count)
+        let countQust ;
+
+        //Determinated the count of question:
+        if(count == 10 )
+            countQust = count;
+        else if (count > 10)
+            countQust = count % 10;
+
+        //compared the right answer to the correct answer:
+        if(rightAnswers > (countQust / 2) && rightAnswers < countQust)
         {
             
             theResultat = `
                         <div class="card " >
                             <img src="images/congrats-15.gif" class="card-img-top " alt="...">
                             <div class="card-body">
-                                <p class="card-text mt-4"><span class="good">Good</span>, ${rightAnswers} From ${count} .</p>
+                                <p class="card-text mt-4"><span class="good">Good</span>, ${rightAnswers} From ${countQust} .</p>
                                 <a href="`+url+`" class="btn btn-success mt-2 float-right">Next</a>
                                 <a href="http://127.0.0.1:8000/levels" class="btn btn-danger mt-2 float-left">Back</a>
                             </div>
                         </div>           
             `;
         }
-        else if(rightAnswers === count)
+        else if(rightAnswers === countQust)
         {
             theResultat = `
                         <div class="card " >
@@ -355,7 +364,7 @@ function showResult(count,lvl)
                         <div class="card " >
                             <img src="images/giphy (1).gif" class="card-img-top " alt="...">
                             <div class="card-body">
-                                <p class="card-text mt-4"><span class="bad">Bad</span>, ${rightAnswers} From ${count}.</p>
+                                <p class="card-text mt-4"><span class="bad">Bad</span>, ${rightAnswers} From ${countQust}.</p>
                                 <a href="`+url+`" class="btn btn-success mt-2 float-right">Next</a>
                                 <a href="http://127.0.0.1:8000/levels" class="btn btn-danger mt-2 float-left">Back</a>
                             </div>

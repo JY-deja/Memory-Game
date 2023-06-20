@@ -130,12 +130,12 @@ body{
 }
 
 .quiz-app .bullets .spans span.on{
-    background-color: green;
+    background-color: #198754;
     color: white;
 }
 
 .quiz-app .bullets .spans span.ouf{
-    background-color: red;
+    background-color: #dc3545;
     color: white;
 }
 
