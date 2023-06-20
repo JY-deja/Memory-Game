@@ -50,9 +50,6 @@
         <div class="results mt-4">
            
         </div>
-        <div class="results2 mt-4">
-           
-        </div>
     </div>
 </body>
 </html>

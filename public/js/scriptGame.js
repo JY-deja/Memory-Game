@@ -1,6 +1,7 @@
 // select elemenet
 let countSpan = document.querySelector('.count span');
 let bulletsSpanContainer = document.querySelector(".bullets .spans");
+let quizApp = document.querySelector(".quiz-app");
 let quizArea = document.querySelector(".quiz-area");
 let quizInfo = document.querySelector(".quiz-info");
 let divBut = document.querySelector(".div-but");
@@ -45,7 +46,15 @@ function getQuestions(){
             let totalQuestion = questionobject.words.length;
 
             //Index Of The Last Question:
-            let questionCount = 10*level;
+            let questionCount;
+
+            //verifie the question:
+            let qC = 10*level;
+
+            if (totalQuestion < qC)
+                questionCount = totalQuestion;
+            else
+                questionCount = qC;
 
             //create bullets + set question count
             createBullets(questionCount , totalQuestion);
@@ -127,7 +136,7 @@ function getQuestions(){
                     handleBullets(recorectAnswer);
 
                     //Show The Result 
-                    showResult(questionCount);
+                    showResult(questionCount, level);
                 }       
                 }
 
@@ -149,17 +158,17 @@ function getQuestions(){
 function createBullets(num , totalQuest)
 {
     // countSpan.innerHTML = num;
-    let numQuest;
-    let rest = num - totalQuest ; 
+    let numQuest = num - ((level - 1 )*10);
+    // let rest = num - totalQuest ; 
     
-    if(rest > 0)
-    {
-        numQuest = 10 - rest;
-    }
-    else
-    {
-        numQuest = 10;
-    }
+    // if(rest > 0)
+    // {
+    //     numQuest = 10 - rest;
+    // }
+    // else
+    // {
+    //     numQuest = 10;
+    // }
 
     //create Spans
     for(let i = 0 ; i < numQuest ; i++)
@@ -187,7 +196,6 @@ function addQuestionsData(obj , count)
     let questionTiltle = document.createElement("h2");
 
     //Create Question Text in Upper Case :
-
     let questionTex = obj["Word"].charAt(0).toUpperCase() + obj["Word"].slice(1) ;
     let questionText = document.createTextNode(questionTex);
     
@@ -279,12 +287,14 @@ function checkAnswer(RAns, QCount){
 function handleBullets(aNS){
     //Get All The Bullets :
     let bulletsSpan = document.querySelectorAll(".bullets .spans span");
+    let indexBullet = Math.trunc(currentIndex % 10) - 1;
+    // console.log(indexBullet);
 
     //We Convertir All The Span  In Table
     let arrayOfSpan = Array.from(bulletsSpan);
 
     arrayOfSpan.forEach((span , index) => {
-        if(currentIndex -1 === index){
+        if(indexBullet === index){
             if(aNS)
             {
                 span.className = "on";
@@ -299,7 +309,7 @@ function handleBullets(aNS){
 
 }
 
-function showResult(count)
+function showResult(count,lvl)
 {
     let theResultat;
     if(currentIndex === count)
@@ -311,15 +321,17 @@ function showResult(count)
         submitButton.remove();
         bullets.remove();
 
+        let url = "http://127.0.0.1:8000/game?level="+ (lvl+1);
         if(rightAnswers > (count / 2) && rightAnswers < count)
         {
+            
             theResultat = `
-                        <div class="card mt-sm-4" style="width: 15rem;">
-                            <img src="images/emoji-eccellente.gif" class="card-img-top mt-sm-4" alt="...">
+                        <div class="card " >
+                            <img src="images/congrats-15.gif" class="card-img-top " alt="...">
                             <div class="card-body">
-                                <p class="card-text mt-4"><span class="good">Good</span>, ${rightAnswers} From ${count} .</p></p>
-                                <a href="#" class="btn btn-danger mt-2 float-right">Next</a>
-                                <a href="#" class="btn btn-success mt-2 float-left">Back</a>
+                                <p class="card-text mt-4"><span class="good">Good</span>, ${rightAnswers} From ${count} .</p>
+                                <a href="`+url+`" class="btn btn-success mt-2 float-right">Next</a>
+                                <a href="http://127.0.0.1:8000/levels" class="btn btn-danger mt-2 float-left">Back</a>
                             </div>
                         </div>           
             `;
@@ -327,32 +339,36 @@ function showResult(count)
         else if(rightAnswers === count)
         {
             theResultat = `
-                        <div class="card mt-sm-4" style="width: 15rem;">
-                            <img src="images/emoji-eccellente.gif" class="card-img-top mt-sm-4" alt="...">
+                        <div class="card " >
+                            <img src="images/emoji-eccellente.gif" class="card-img-top " alt="...">
                             <div class="card-body">
                                 <p class="card-text mt-4"><span class="perfect">Perfect</span>, All Answers Is Good.</p>
-                                <a href="#" class="btn btn-danger mt-2 float-right">Next</a>
-                                <a href="#" class="btn btn-success mt-2 float-left">Back</a>
+                                <a href="`+url+`" class="btn btn-success mt-2 float-right">Next</a>
+                                <a href="http://127.0.0.1:8000/levels" class="btn btn-danger mt-2 float-left">Back</a>
                             </div>
-                        </div>           
+                        </div>          
             `;
         }
         else 
         {
             theResultat = `
-                        <div class="card mt-sm-4" style="width: 15rem;">
-                            <img src="images/sad-disappointed-emoji-fe0odmcpuli6pcbx.gif" class="card-img-top mt-sm-4" alt="...">
+                        <div class="card " >
+                            <img src="images/giphy (1).gif" class="card-img-top " alt="...">
                             <div class="card-body">
                                 <p class="card-text mt-4"><span class="bad">Bad</span>, ${rightAnswers} From ${count}.</p>
-                                <a href="#" class="btn btn-danger mt-2 float-right">Next</a>
-                                <a href="#" class="btn btn-success mt-2 float-left">Back</a>
+                                <a href="`+url+`" class="btn btn-success mt-2 float-right">Next</a>
+                                <a href="http://127.0.0.1:8000/levels" class="btn btn-danger mt-2 float-left">Back</a>
                             </div>
                         </div>
             `;
         }
 
         resultsContainer.innerHTML = theResultat;
-        resultsContainer.className = "results mt-4 p-lg-5 bg-white fs-4 font-monospace text-center";
+        resultsContainer.className = "results fs-4 font-monospace text-center";
+        // resultsContainer.className = "results mt-4 p-lg-5 bg-white fs-4 font-monospace text-center";
+
+        quizApp.className = "quiz-app w-25";
+        quizApp.style.padding = "0px;"
         
     }
 }
@@ -405,3 +421,4 @@ function verifieReponse(rightAnswer , recorectAnswer){
                     
                 }
 }
+
