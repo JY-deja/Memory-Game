@@ -330,49 +330,111 @@ function showResult(count,lvl)
         else if (count > 10)
             countQust = count % 10;
 
-        //compared the right answer to the correct answer:
-        if(rightAnswers > (countQust / 2) && rightAnswers < countQust)
-        {
-            // for the next button we don't added just for the situation when has more the question . if the has not we don't added.
-            theResultat = `
-                        <div class="card " >
-                            <img src="images/congrats-15.gif" class="card-img-top " alt="...">
-                            <div class="card-body">
-                                <p class="card-text mt-4"><span class="good">Good</span>, ${rightAnswers} From ${countQust} .</p>
-                                <a href="`+url+`" class="btn btn-success mt-2 float-right">Next</a>
-                                <a href="http://127.0.0.1:8000/levels" class="btn btn-danger mt-2 float-left">Back</a>
-                            </div>
-                        </div>           
-            `;
-        }
-        else if(rightAnswers === countQust)
-        {
-            theResultat = `
-                        <div class="card " >
-                            <img src="images/emoji-eccellente.gif" class="card-img-top " alt="...">
-                            <div class="card-body">
-                                <p class="card-text mt-4"><span class="perfect">Perfect</span>, All Answers Is Good.</p>
-                                <a href="`+url+`" class="btn btn-success mt-2 float-right">Next</a>
-                                <a href="http://127.0.0.1:8000/levels" class="btn btn-danger mt-2 float-left">Back</a>
-                            </div>
-                        </div>          
-            `;
-        }
-        else 
-        {
-            theResultat = `
-                        <div class="card " >
-                            <img src="images/giphy (1).gif" class="card-img-top " alt="...">
-                            <div class="card-body">
-                                <p class="card-text mt-4"><span class="bad">Bad</span>, ${rightAnswers} From ${countQust}.</p>
-                                <a href="`+url+`" class="btn btn-success mt-2 float-right">Next</a>
-                                <a href="http://127.0.0.1:8000/levels" class="btn btn-danger mt-2 float-left">Back</a>
-                            </div>
-                        </div>
-            `;
-        }
 
-        resultsContainer.innerHTML = theResultat;
+        
+            theResultat = document.createElement("div");
+            theResultat.className = "card";
+            let img = document.createElement("img");
+            img.className = "card-img-top";
+            
+            let divBody = document.createElement("div");
+            divBody.className = "card-body";
+            let p = document.createElement("p");
+            p.className = "card-text mt-4 font-monospace fw-bold fs-4 text-capitalize";
+            let spanBody = document.createElement("span");
+            
+            
+            let aNext = document.createElement("a");
+            aNext.href = url;
+            aNext.className ="btn btn-success mt-2 float-start ms-4";
+            aNext.innerText = "Next";
+            
+            let aBack = document.createElement("a");
+            aBack.href = "http://127.0.0.1:8000/levels";
+            aBack.className ="btn btn-danger mt-2 float-end me-4";
+            aBack.innerText = "Back";
+           
+            if(rightAnswers > (countQust / 2) && rightAnswers < countQust)
+            {
+                img.src ="images/congrats-15.gif";
+                spanBody.className = "good";
+                spanBody.innerText = `Good job! You got : `;
+                p.appendChild(spanBody);
+                spanBody.insertAdjacentHTML("afterend",`${rightAnswers} From ${countQust}.`);
+            }
+            else if(rightAnswers === countQust)
+            {
+                img.src ="images/emoji-eccellente.gif";
+                spanBody.className = "perfect";
+                spanBody.innerText = `Perfect!  `;
+                p.appendChild(spanBody);
+                spanBody.insertAdjacentHTML("afterend",`, All Answers Is Good.`);
+            }
+            else
+            {
+                img.src ="images/giphy (1).gif";
+                spanBody.className = "bad";
+                spanBody.innerText = `Bad ! You got : `;
+                p.appendChild(spanBody);
+                spanBody.insertAdjacentHTML("afterend",`${rightAnswers} From ${countQust}.`);
+            }
+            theResultat.appendChild(img);
+            divBody.appendChild(p);
+            divBody.appendChild(aBack);
+            divBody.appendChild(aNext);
+            theResultat.appendChild(divBody);
+
+            
+
+        //compared the right answer to the correct answer:
+        // if(rightAnswers > (countQust / 2) && rightAnswers < countQust)
+        // {
+
+            
+
+
+           
+
+        //     // for the next button we don't added just for the situation when has more the question . if the has not we don't add
+        //     theResultat = `
+        //                 <div class="card " >
+        //                     <img src="images/congrats-15.gif" class="card-img-top " alt="...">
+        //                     <div class="card-body">
+        //                         <p class="card-text mt-4"><span class="good">Good</span>, ${rightAnswers} From ${countQust}.</p>
+        //                         <a href="`+url+`" class="btn btn-success mt-2 float-right">Next</a>
+        //                         <a href="http://127.0.0.1:8000/levels" class="btn btn-danger mt-2 float-left">Back</a>
+        //                     </div>
+        //                 </div>           
+        //     `;
+        // }
+        // else if(rightAnswers === countQust)
+        // {
+        //     theResultat = `
+        //                 <div class="card " >
+        //                     <img src="images/emoji-eccellente.gif" class="card-img-top " alt="...">
+        //                     <div class="card-body">
+        //                         <p class="card-text mt-4"><span class="perfect">Perfect</span>, All Answers Is Good.</p>
+        //                         <a href="`+url+`" class="btn btn-success mt-2 float-right">Next</a>
+        //                         <a href="http://127.0.0.1:8000/levels" class="btn btn-danger mt-2 float-left">Back</a>
+        //                     </div>
+        //                 </div>          
+        //     `;
+        // }
+        // else 
+        // {
+        //     theResultat = `
+        //                 <div class="card " >
+        //                     <img src="images/giphy (1).gif" class="card-img-top " alt="...">
+        //                     <div class="card-body">
+        //                         <p class="card-text mt-4"><span class="bad">Bad</span>, ${rightAnswers} From ${countQust}.</p>
+        //                         <a href="`+url+`" class="btn btn-success mt-2 float-right">Next</a>
+        //                         <a href="http://127.0.0.1:8000/levels" class="btn btn-danger mt-2 float-left">Back</a>
+        //                     </div>
+        //                 </div>
+        //     `;
+        // }
+
+        resultsContainer.appendChild(theResultat)
         resultsContainer.className = "results fs-4 font-monospace text-center";
         // resultsContainer.className = "results mt-4 p-lg-5 bg-white fs-4 font-monospace text-center";
 
