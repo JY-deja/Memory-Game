@@ -11,9 +11,6 @@ async function getData(){
     data.words.forEach(function(word){
         tab += `
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-    <td class="w-28 p-4">
-        <img src="/images/freundin.jpg" alt="Apple Watch">
-    </td>
     <td class="px-6 py-4 font-semibold text-black dark:text-white text-center">
         ${word.Word}
     </td>
