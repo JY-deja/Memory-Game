@@ -16,8 +16,10 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js" defer></script>
 
-        {{-- <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous" defer></script>
-        <script src="{{ asset('js/apiService.js') }}" defer></script> --}}
+        {{-- 
+            <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous" defer></script>
+            <script src="{{ asset('js/apiService.js') }}" defer></script> 
+        --}}
 
           
     </head>

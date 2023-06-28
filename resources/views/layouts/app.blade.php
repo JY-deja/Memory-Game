@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-                <!-- Link Added For Me -->
+        <!-- Link Added For Me -->
 
                 {{-- Include swiperjs via CDN  --}}
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
@@ -45,11 +45,6 @@
 
                 {{-- Include sweetalert via CDN  --}}
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
-                
-                
-                
-
-
 
         <!-- End Of The Link added For Me -->
         
