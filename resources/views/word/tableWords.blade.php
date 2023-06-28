@@ -4,27 +4,29 @@
     </div>
 <section class="tableWords mx-5 px-5">
     
-<div class=" m-&é ">
-    <table id="datatable" class="relative overflow-x-auto shadow-md sm:rounded-lg w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3 text-color text-center text-base">
-                    Word
-                </th>
-                <th scope="col" class="px-6 py-3 text-color text-center text-base">
-                    Meaning
-                </th>
-                <th scope="col" class="px-6 py-3 text-color text-center text-base">
-                    Edit
-                </th>
-                <th scope="col" class="px-6 py-3 text-color text-center text-lg">
-                    Delete
-                </th>
-            </tr>
-        </thead>
-        <tbody class="dataTableBody">
-        </tbody>
-    </table>
+<div class=" mx-6 ">
+    <div class="mx-6">
+        <table id="datatable" class="mx-6 relative overflow-x-auto shadow-md sm:rounded-lg w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-color text-center text-base">
+                        Word
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-color text-center text-base">
+                        Meaning
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-color text-center text-base">
+                        Edit
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-color text-center text-lg">
+                        Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="dataTableBody">
+            </tbody>
+        </table>
+    </div>
 </div>
 </section>
 </x-app-layout>
