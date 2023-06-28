@@ -1,10 +1,10 @@
 $(document).ready(function () {
     $('#login_form').submit(function (e) { 
-        e.preventDefault();
+        // e.preventDefault();
         var formEmail = $("#email").val();
         var formPassword = $("#password").val();
-        // $(this).serialize();
-        //console.log(formData); 
+        $(this).serialize();
+        console.log(formEmail); 
         $.ajax({
             type: "GET",
             url: "http://127.0.0.1:8000/api/auth/login",
@@ -12,10 +12,18 @@ $(document).ready(function () {
                 email: formEmail,
                 password: formPassword
             },
-           // dataType: "dataType",
             success: function (response) {
-                console.log(response.token);   
-                console.log('good');  
+               alert(response.token);   
+                console.log('good'); 
+                // Save the token to local storage or session storage
+                localStorage.setItem('token', response.token);
+                // Redirect to a protected page or update UI accordingly
+                // window.location.href = 'http://127.0.0.1:8000/dashboard';
+                $('#login_form').attr("action", "{{ route('login') }}").
+                console.log($('#login_form').attr('action'));
+            },
+            error:function(){
+                alert("wrong");
             }
         });
     });
