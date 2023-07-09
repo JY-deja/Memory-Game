@@ -20,6 +20,9 @@
             <script src="{{ asset('js/apiService.js') }}" defer></script> 
         --}}
 
+        <link rel="stylesheet" href="css/styleLogin.css">
+        <script src="js/scriptLogin.js" defer></script>
+
           
     </head>
     <body class="font-sans text-gray-900 antialiased">
