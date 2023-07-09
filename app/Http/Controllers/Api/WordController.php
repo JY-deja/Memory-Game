@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Validator;
 
 class WordController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -48,7 +53,7 @@ class WordController extends Controller
                 // $words->Answer_1 = $answers[0]->meaning;
                 // $words->Answer_2 = $answers[1]->meaning;
                 // $words->Answer_3 = $answers[2]->meaning;
-                // $words->id_user = Auth::id();
+                $words->id_user = Auth::id();
 
                 $exist = false;
                 foreach($answers as $answers){
@@ -59,7 +64,6 @@ class WordController extends Controller
               
                 if(!$exist){
                     $k = rand(0,2);
-
                     $words->{'Answer_'.$k+1} = $CorrectAnswer;
                 }    
 
@@ -77,7 +81,7 @@ class WordController extends Controller
             return response()->json([
                 'Status' => 404 ,
                  'Message' => 'No Records Found',
-                //  'id_user' => Auth::id()
+                'id_user' => Auth::id()
                 ], 
             404);
         }

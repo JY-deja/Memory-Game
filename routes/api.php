@@ -40,7 +40,7 @@ Route::group([
 
 });
 
-    Route::get('words',[WordController::class, 'index']);//->middleware('auth.jwt')
+    Route::get('words',[WordController::class, 'index']);  //->middleware('auth:api');
     Route::post('words',[WordController::class, 'store']);
     Route::get('words/{id}',[WordController::class, 'show']);//->middleware('jwt'
     Route::get('words/{id}/edit',[WordController::class, 'edit']);
