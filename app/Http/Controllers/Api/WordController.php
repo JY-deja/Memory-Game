@@ -265,28 +265,3 @@ class WordController extends Controller
         }
     }
 }
-
-
-
-
-/**
- 
-        // $words = $words1->map(function ($item) {
-        //$meaning = Word::select("meaning")->first();
-        // $answer_1 = Word::select("meaning")->Limit(1)
-        // ->select("meaning")
-        // ->inRandomOrder()
-        // ->limit(1)
-        // ->whereNotIn("meaning" , $meaning)
-        // ->get();
-        // $answer_2 = Word::select("meaning")
-        //                 ->inRandomOrder()
-        //                 ->limit(1)
-        //                 ->whereNotIn("meaning" , $answer_1)
-        //                 ->whereNotIn("meaning" , $meaning)
-        //                 ->get();
-        //     $item->Answer_1 = $answer_1;
-        //     $item->Answer_2 = $answer_2;
-        //     return $item;
-        // });
- */

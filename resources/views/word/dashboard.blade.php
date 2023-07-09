@@ -19,20 +19,8 @@
                 <div class="text-gray-900 dark:text-gray-100 ">
                     <section class="swiper mySwiper w-100">
                         <div class="swiper-wrapper jsSwip">
-                          <div class="card swiper-slide">
-                            {{--    <div class="card_image mb-6">
-                                    <img src="images/Back_1.png" alt="img">
-                                </div>
-                                <div class="card_content m-5">
-                                    <span class="card_title m-3 text-4xl">
-                                        holen
-                                    </span>
-                                    <span class="card_name text-xl">
-                                        أحضر
-                                    </span>
-                                </div>   --}} 
+                            <div class="card swiper-slide">
                             </div>  
-                      
                         </div> 
                     </section>
                 </div>
@@ -45,28 +33,4 @@
         </div>
         
     </div> 
-    <!-- Modal toggle -->
-{{-- <button  class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-    Toggle modal
-  </button> --}}
-  
-
 </x-app-layout>
-
-{{-- 
-    <div class="card swiper-slide">
-                                <div class="card_image mb-6">
-                                    <img src="images/freundin.jpg" alt="img">
-                                </div>
-                                <div class="card_content m-6">
-                                    <span class="card_title m-3">
-                                        Freundin
-                                    </span>
-                                    <span class="card_name">
-                                        صديقة
-                                    </span>
-                                    
-                                    <button class="card_btn">view </button>
-                                </div>    
-                            </div>
- --}}

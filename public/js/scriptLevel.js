@@ -87,29 +87,16 @@ function createlevel(levels)
           </div>
             `;
             rowDiv.innerHTML += cardLevel;
-            
-            // levelI.onclick() =>{
-                
-            // }
         }
     }
 
     let levelI = document.querySelectorAll(".level");
     let level;
-    // console.log(levelI);
     levelI.forEach((Element)=>{
-        //how to get data-value of element by javascript?
-
         Element.onclick = () => {
             level = Element.getAttribute('data-value');
-
-            // begin = 10*(level - 1) + 1;
-            // end = 10*level;
             window.location.href = "http://127.0.0.1:8000/game?level=" + encodeURIComponent(level);
         }
-
-        // data = Element.getAttribute('data-value');
-        // console.log(data);
         
     })
 }

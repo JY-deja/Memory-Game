@@ -38,11 +38,6 @@ async function getData(){
         dataTableBody.innerHTML = tab;
 
 })
-// btnOpenModal = document.querySelectorAll('#openModal');
-//     console.log(btnOpenModal)
-//     btnOpenModal.onclick = function(){
-//     idModalUpdate.classList.remove("hidden");
-// }
 }
 getData();
 
@@ -52,44 +47,22 @@ $(document).ready(function () {
     getData();
 });
 
-//POST Form Data With JavaScript Fetch API?
- 
-
-
-// Form update Data With JavaScript Fetch API?
-
+// Form update Data With JavaScript Fetch API
 function updateItems(index){
-//     let element = document.getElementById("Update-modal");
-//     let modal = new modal(element);
-//     modal.show();
-//     modal.hide();
-//     // modal.romove('fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full');
-//     // modal.add('fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex')
-//     // modal.style.display = 'block'
-   console.log(index)
-        fetch('http://127.0.0.1:8000/api/words/'+index+'/edit', {
+    fetch('http://127.0.0.1:8000/api/words/'+index+'/edit', {
             method:'GET'
         }).then(res => res.json())
           .then(data => {
             if(data.Status === 200){
-                //put the value in the input js?
-
                 valueWord.value = data.Word.word;
                 valueMeaning.value = data.Word.meaning;
-
-                console.log(data.Word.meaning);
-                console.log(data.Word.word)
-
             }
         });
         const formUpdate = document.getElementById('formUpdate');
         formUpdate.addEventListener('submit',event =>{
             event.preventDefault();
             const updateFormData = new FormData(formUpdate);
-            // console.log(updateFormData)
             const data = new URLSearchParams(updateFormData);
-            // console.log(data);
-
             fetch('http://127.0.0.1:8000/api/words/'+index+'/update', {
                 method: 'PUT',
                 body:data
@@ -128,8 +101,6 @@ function updateItems(index){
 }
 
 //fetch delete api javascript 
-
-
 function removeItems(index){
     console.log(index)
     Swal.fire({
@@ -157,24 +128,6 @@ function removeItems(index){
     });
 }
 
-
-    // fetch('http://127.0.0.1:8000/api/words/'+id+'/delete', {
-    //     method: 'DELETE'
-    // })
-    // .then(res => console.log(res.Message) );
-
-
-
-    //         fetch('http://127.0.0.1:8000/api/words/'+index+'/delete', {
-    //            method: 'DELETE'
-    //         }) 
-    //         Swal.fire(
-    //             'Deleted!',
-    //             'Your file has been deleted.',
-    //             'success'
-    //         )
-    //     }
-    // });
 
 
 

@@ -19,8 +19,6 @@
                 {{-- Include swiperjs via CDN  --}}
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
                 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" defer></script>
-               
-                {{-- <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous" defer></script> --}}
 
                 {{-- Include fileWordCss via CSS File  --}}
                 <link rel="stylesheet" href="css/word.css">

@@ -25,7 +25,6 @@
     <div class="quiz-app w-50">
         <div class="quiz-info shadow">
            <div class="category font-monospace fw-bolder m-1">Category : <span class="text-info fw-bolder">Vocabulary</span> </div>
-           <!-- <div class="count font-monospace fw-bolder m-1">Questions Count : <span class="text-info fw-bolder"></span></div>  -->
         </div>
         <div class="quiz-area">
             
@@ -40,12 +39,7 @@
         </div>
         <div class="bullets bg-white mt-3 shadow">
             <div class="spans mt-3">
-                
             </div>
-            <!-- <div class="countdown mt-3">
-                <span class="minutes">02</span> :
-                <span class="secondes">45</span>
-            </div> -->
         </div>
         <div class="results mt-4">
            

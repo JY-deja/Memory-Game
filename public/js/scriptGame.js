@@ -157,18 +157,7 @@ function getQuestions(){
 //create function that crete bullets depend the number of question.
 function createBullets(num , totalQuest)
 {
-    // countSpan.innerHTML = num;
     let numQuest = num - ((level - 1 )*10);
-    // let rest = num - totalQuest ; 
-    
-    // if(rest > 0)
-    // {
-    //     numQuest = 10 - rest;
-    // }
-    // else
-    // {
-    //     numQuest = 10;
-    // }
 
     //create Spans
     for(let i = 0 ; i < numQuest ; i++)
@@ -255,8 +244,6 @@ function addQuestionsData(obj , count)
         
     }
     }
-    
-    // random : Math.floor(Math.random() * 4)+
 }
 
 
@@ -394,8 +381,6 @@ function showResult(count, lvl, tQuest)
             
         resultsContainer.appendChild(theResultat)
         resultsContainer.className = "results fs-4 font-monospace text-center";
-        // resultsContainer.className = "results mt-4 p-lg-5 bg-white fs-4 font-monospace text-center";
-
         quizApp.className = "quiz-app w-25";
         quizApp.style.padding = "0px;"
         
@@ -405,7 +390,6 @@ function showResult(count, lvl, tQuest)
 function verifieReponse(rightAnswer , recorectAnswer){
     let btn = document.querySelectorAll('.btn');
 
-    // let correctAnswer = questionobject.words[currentIndex].Correct_Answer;
     let worngAnswer = document.querySelector(".active");
 
     //Check The Answer
@@ -418,15 +402,6 @@ function verifieReponse(rightAnswer , recorectAnswer){
                     submitButton.classList.remove('submitButton');
 
                 }
-                // else if(recorectAnswer === null)
-                // {
-                //     btn.forEach(element => {
-                //         let answer = element.getAttribute('data-answer');
-                //         if(answer === correctAnswer){
-                //             element.classList.add('active');
-                //         }
-                //     });
-                // }
                 else
                 {
                     if(worngAnswer != null)

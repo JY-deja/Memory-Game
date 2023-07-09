@@ -20,11 +20,6 @@
     <div class="border border-4 rounded shadw div-nolevel">
       <div class="row row-cols-3 row-cols-md-6 mt-1 m-0 mb-1 g-6">  
       </div> 
-      <!-- <div class="m-5 text-center div-no-level">
-        <h1 class="text-center nolevel fw-bolder fs-1">No current level <br>
-          available</h1>
-        <p class="text-center">To start the game, please insert at least 3 words for start the first level.</p>
-      </div> -->
     </div>
   </div>  
 </body>
