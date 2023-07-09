@@ -17,3 +17,9 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/public/js/briollant.js
+/public/css/briollant.css
+/resources/views/bright
+app/Http/Controllers/Api/bruillantTheController.txt
+resources/views/word/welcome.blade.php
+resources/views/word/test.blade.php
