@@ -24,7 +24,7 @@ class WordController extends Controller
     public function index()
     {
         $words1 = Word::select("id","word AS Word","meaning AS Correct_Answer","answer1 AS Answer_1","answer2 AS Answer_2")
-                        // ->where('id_user',Auth::id())
+                        ->where('id_user',Auth::id())
                         ->get();
 
         for($i = 0 ; $i <= Word::count();$i++){
@@ -49,12 +49,9 @@ class WordController extends Controller
                 for($x = 0; $x < 3; $x++){
                     $words->{'Answer_'.$x+1} = $answers[$x]->meaning;
                 }
-               
-                // $words->Answer_1 = $answers[0]->meaning;
-                // $words->Answer_2 = $answers[1]->meaning;
-                // $words->Answer_3 = $answers[2]->meaning;
-                $words->id_user = Auth::id();
 
+                $words->id_user = Auth::id();
+                
                 $exist = false;
                 foreach($answers as $answers){
                     if($answers->meaning === $CorrectAnswer){
@@ -65,10 +62,7 @@ class WordController extends Controller
                 if(!$exist){
                     $k = rand(0,2);
                     $words->{'Answer_'.$k+1} = $CorrectAnswer;
-                }    
-
-
-                
+                }      
             }
         }
         
@@ -80,8 +74,7 @@ class WordController extends Controller
         else{
             return response()->json([
                 'Status' => 404 ,
-                 'Message' => 'No Records Found',
-                'id_user' => Auth::id()
+                'Message' => 'No Records Found',
                 ], 
             404);
         }
@@ -116,8 +109,7 @@ class WordController extends Controller
             $word = Word::create([
                 'word' => $request->word,
                 'meaning' => $request->meaning,
-                'id_user' => 2
-                //'id_user' => Auth::id()
+                'id_user' => Auth::id()
             ]);
             if($word)
             {
@@ -142,13 +134,13 @@ class WordController extends Controller
      */
     public function show(string $id)
     {
-        $word = Word::find($id);//where('id_user',Auth::id())->
+        $word = Word::where('id_user',Auth::id())->find($id);
         if($word) 
         {
             return response([
                 'Status' => 200,
                 'Wors' => $word,
-                //'id_user' => Auth::id()
+                'id_user' => Auth::id()
             ],200);
         }
         else
@@ -156,7 +148,6 @@ class WordController extends Controller
             return response([
                 'Status' => 404,
                 'Message' => 'No such Word Found!',
-                'id_user' => Auth::id()
             ], 404);
         }
         
@@ -167,7 +158,7 @@ class WordController extends Controller
      */
     public function edit(string $id)
     {
-        $word = Word::find($id);//where('id_user',Auth::id())->
+        $word = Word::where('id_user',Auth::id())->find($id);
         if($word)
         {
             return response()->json([
@@ -203,7 +194,7 @@ class WordController extends Controller
         }
         else
         {
-            $word = Word::find($id);//where('id_user',Auth::id())->
+            $word = Word::where('id_user',Auth::id())->find($id);
            
            if($word)
            {
@@ -241,7 +232,7 @@ class WordController extends Controller
      */
     public function destroy(string $id)
     {
-        $word = Word::find($id);//where('id_user',Auth::id())->
+        $word = Word::where('id_user',Auth::id())->find($id);
         if($word)
         {
             $word_del = $word->delete();

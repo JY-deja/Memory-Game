@@ -1,3 +1,4 @@
+let token = localStorage.getItem('token');
 let rowDiv = document.querySelector(".row");
 let noLevel = document.querySelector(".div-nolevel"); 
 let loopLevels;
@@ -40,7 +41,7 @@ function getQuestions(){
             
         }
     }
-    myRequest.open("get","http://127.0.0.1:8000/api/words",true);
+    myRequest.open("get",`http://127.0.0.1:8000/api/words?token=${token}`,true);
     //send request
     myRequest.send();
 

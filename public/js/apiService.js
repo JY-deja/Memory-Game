@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $('#login_form').submit(function (e) { 
-        // e.preventDefault();
         var formEmail = $("#email").val();
         var formPassword = $("#password").val();
         $(this).serialize();
@@ -13,14 +12,10 @@ $(document).ready(function () {
                 password: formPassword
             },
             success: function (response) {
-               alert(response.token);   
-                console.log('good'); 
                 // Save the token to local storage or session storage
                 localStorage.setItem('token', response.token);
                 // Redirect to a protected page or update UI accordingly
-                // window.location.href = 'http://127.0.0.1:8000/dashboard';
-                $('#login_form').attr("action", "{{ route('login') }}").
-                console.log($('#login_form').attr('action'));
+                $('#login_form').attr("action", "{{ route('login') }}")
             },
             error:function(){
                 alert("wrong");

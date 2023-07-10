@@ -1,4 +1,5 @@
 // select elemenet
+let token = localStorage.getItem('token');
 let countSpan = document.querySelector('.count span');
 let bulletsSpanContainer = document.querySelector(".bullets .spans");
 let quizApp = document.querySelector(".quiz-app");
@@ -146,7 +147,7 @@ function getQuestions(){
         
     };
 
-    myRequest.open("get","http://127.0.0.1:8000/api/words",true);
+    myRequest.open("get",`http://127.0.0.1:8000/api/words?token=${token}`,true);
     //send request
     myRequest.send();
 

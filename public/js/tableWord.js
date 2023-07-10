@@ -1,11 +1,12 @@
-dataTableBody = document.querySelector('.dataTableBody');
-idModalUpdate = document.getElementById('Update-modal');
-valueWord = document.querySelector('.valueWord');
-valueMeaning= document.querySelector('.valueMeaning');
+let dataTableBody = document.querySelector('.dataTableBody');
+let idModalUpdate = document.getElementById('Update-modal');
+let valueWord = document.querySelector('.valueWord');
+let valueMeaning= document.querySelector('.valueMeaning');
 let element = document.getElementById("Update-modal");
+// let token1 = localStorage.getItem('token');
 
 async function getData(){
-    const records = await fetch('http://127.0.0.1:8000/api/words')
+    const records = await fetch(`http://127.0.0.1:8000/api/words?token=${token}`)
     const data = await records.json()
     let tab = '';
     data.words.forEach(function(word){
@@ -49,7 +50,7 @@ $(document).ready(function () {
 
 // Form update Data With JavaScript Fetch API
 function updateItems(index){
-    fetch('http://127.0.0.1:8000/api/words/'+index+'/edit', {
+    fetch(`http://127.0.0.1:8000/api/words/${index}/edit?token=${token}`, { 
             method:'GET'
         }).then(res => res.json())
           .then(data => {
@@ -63,7 +64,7 @@ function updateItems(index){
             event.preventDefault();
             const updateFormData = new FormData(formUpdate);
             const data = new URLSearchParams(updateFormData);
-            fetch('http://127.0.0.1:8000/api/words/'+index+'/update', {
+            fetch(`http://127.0.0.1:8000/api/words/${index}/update?token=${token}`, {
                 method: 'PUT',
                 body:data
             }).then(res => res.json())
@@ -113,7 +114,7 @@ function removeItems(index){
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch('http://127.0.0.1:8000/api/words/'+index+'/delete', {
+            fetch(`http://127.0.0.1:8000/api/words/${index}/delete?token=${token}`, {
                method: 'DELETE'
             }).then(res=> res.json())
             .then(data => {

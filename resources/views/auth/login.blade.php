@@ -9,7 +9,7 @@
                     Login
                     <span class="underline"></span>
                 </button>
-                <form class="form form-login" id="login_form" method="POST" action="{{ route('login') }}">
+                <form class="form form-login" id="login_form" method="POST" action="">
                     @csrf
 
                     <!-- Email Address -->
