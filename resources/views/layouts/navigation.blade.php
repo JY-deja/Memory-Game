@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('Words')" :active="request()->routeIs('Words')">
                         {{ __('Words') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('translate')" :active="request()->routeIs('translate')">
+                        {{ __('Translate') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('levels')" :active="request()->routeIs('levels')">
                         {{ __('Game') }}
                     </x-nav-link>
@@ -74,6 +77,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('Words')" :active="request()->routeIs('Words')">
                 {{ __('Words') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('translate')" :active="request()->routeIs('translate')">
+                {{ __('Translate') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('Words')" :active="request()->routeIs('game')">
                 {{ __('Game') }}

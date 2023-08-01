@@ -45,6 +45,9 @@
                 {{-- Include sweetalert via CDN  --}}
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
+                {{-- <link href="css/styleTranslate.css"  rel="stylesheet" /> --}}
+                
+
         <!-- End Of The Link added For Me -->
         
     </head>

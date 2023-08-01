@@ -24,11 +24,11 @@ function loadJson()
                  <div class="card_image mb-6">
                      <img src="images/wordImage.png" alt="img">
                  </div>
-                 <div class="card_content m-5">
-                     <span class="card_title m-3 text-4xl">
+                 <div class="card_content mt-5">
+                     <span class="card_title mt-3 text-2xl">
                          ${word.Word}
                      </span>
-                     <span class="card_name text-xl">
+                     <span class="card_name mt-4 text-2xl">
                          ${word.Correct_Answer}
                      </span>
                  </div>    
@@ -103,7 +103,6 @@ function postData()
             }
             else if(data.Status === 500 )//|| data.Status === 422
             {
-                //console.log(data.Message[0])
                 Swal.fire({
                     position: 'top-end',
                     icon: 'warning',

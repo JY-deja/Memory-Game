@@ -21,11 +21,11 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', function () { return view('word.dashboard');})->name('dashboard');
     Route::get('/Words', function () { return view('word.tableWords');})->name('Words');
     Route::get('/levels', function() { return view('word.levels');})->name('levels');
-    // Route::get('/game?level={id}',function(){ return view('word.game');});
     Route::get('/game', function () {
         $level = request('level');
         return view('word.game');
     });
+    Route::get('/translate',function() {return view('word.translate');})->name('translate');
 });
 
 Route::middleware('auth')->group(function () {

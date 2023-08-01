@@ -18,7 +18,7 @@ $(document).ready(function () {
                 $('#login_form').attr("action", "{{ route('login') }}")
             },
             error:function(){
-                alert("wrong");
+                console.log("wrong");
             }
         });
     });
